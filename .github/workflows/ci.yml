@@ -19,3 +19,6 @@ jobs:
 
       - name: Check Ruby version
         run: ruby -v
+
+      - name: Install dependencies
+        run: bundle install
