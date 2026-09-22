@@ -46,3 +46,6 @@ jobs:
 
       - name: Run RuboCop
         run: bundle exec rubocop
+
+      - name: Run Brakeman
+        run: bundle exec brakeman
