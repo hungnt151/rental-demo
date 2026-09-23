@@ -49,3 +49,6 @@ jobs:
 
       - name: Run Brakeman
         run: bundle exec brakeman
+
+      - name: Build Docker image
+        run: docker build -t rental-demo-ci -f rental_demo_app/Dockerfile.dev rental_demo_app
