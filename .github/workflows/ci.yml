@@ -52,3 +52,23 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t rental-demo-ci -f Dockerfile.dev .
+
+      - name: Prepare database in Docker
+        run: |
+          docker run --rm \
+            --network host \
+            -e POSTGRES_USER=rails \
+            -e POSTGRES_PASSWORD=password \
+            -e POSTGRES_HOST=localhost \
+            rental-demo-ci \
+            bundle exec rails db:prepare
+
+      - name: Run RSpec in Docker
+        run: |
+          docker run --rm \
+            --network host \
+            -e POSTGRES_USER=rails \
+            -e POSTGRES_PASSWORD=password \
+            -e POSTGRES_HOST=localhost \
+            rental-demo-ci \
+            bundle exec rspec
